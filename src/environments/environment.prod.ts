@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  searchBaseURL: 'https://api.unsplash.com/search'
 };
