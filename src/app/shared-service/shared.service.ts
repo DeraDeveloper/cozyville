@@ -5,6 +5,8 @@ import { isNullOrUndefined } from 'util';
 import { of, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AlertService } from 'ngx-alerts';
+import { Constants } from '../utils/constants';
+import { PictureRequest } from '../pages/landing/models/picture-request';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +43,9 @@ export class SharedService {
 
   public getHeader(contentType?: string): HttpHeaders {
     return new HttpHeaders()
-      .set("Content-Type", isNullOrUndefined(contentType)? "application/json": contentType);
+      .set("Content-Type", isNullOrUndefined(contentType)? "application/json": contentType)
+      .set("Accept-Version", isNullOrUndefined(contentType)? "v1": contentType)
+      .set("Authorization", isNullOrUndefined(contentType)? "Client-ID "+ Constants.CLIENT_ID: contentType)
   }
 
   updateParams(options?: any): HttpParams {
@@ -87,6 +91,12 @@ export class SharedService {
       this.alert.warning(errorMessage);
     }
     return of(error);
+  }
+
+  public getPictures(pictureRequest: PictureRequest): Observable<any> {
+    const url = environment.imageSearchBaseURL.concat("?").concat("page=").concat(pictureRequest.pageNumber)
+                .concat("&").concat("query=").concat(pictureRequest.searchParam);
+    return this.get(url);
   }
 
 }
