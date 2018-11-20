@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  searchBaseURL: 'https://api.unsplash.com/search'
+  imageSearchBaseURL: 'https://api.unsplash.com/search/photos/'
 };
 
 /*
