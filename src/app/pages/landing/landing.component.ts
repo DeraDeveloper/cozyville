@@ -16,6 +16,8 @@ export class LandingComponent implements OnInit {
   constructor(private service: SharedService, private alert: AlertService) { }
 
   pictureRequest: PictureRequest = new PictureRequest(Constants.SUMMER_IMAGES, Constants.DEFAULT_PAGE);
+  results: any[] = [];
+  selectedPackage: string = "";
 
   ngOnInit() {
   }
@@ -41,7 +43,7 @@ export class LandingComponent implements OnInit {
           }
           return;
         }
-        const data = response.body;
+        this.results = response.body.results;
       }, error => {
         console.log(error)
       }
@@ -50,12 +52,16 @@ export class LandingComponent implements OnInit {
 
   // Handle package selection, set search parameter based on current selection
   onPackageSelected(e) {
+    this.results = [];
     let id = e.currentTarget.id;
     if(id == "summer"){
+      this.selectedPackage = "Sunny Summer";
       this.pictureRequest.searchParam = Constants.SUMMER_IMAGES;
     }else{
+      this.selectedPackage = "Cozy Winter";
       this.pictureRequest.searchParam = Constants.SUMMER_IMAGES;
     }
+    this.toggleSlide('package', 'slide');
     this.getPictures();
   }
 
@@ -63,5 +69,30 @@ export class LandingComponent implements OnInit {
   onPageChange() {
 
   }
+
+  toggleSlide(first, second) {
+    let x = document.getElementById('package');
+    let y = document.getElementById('slide');
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
+    if (y.style.display === "none") {
+      y.style.display = "block";
+    } else {
+      y.style.display = "none";
+  }
+}
+
+backToPackages() {
+  this.toggleSlide('slide', 'package');
+}
+
+purchasePackage() {
+  this.toggleSlide('slide', 'package');
+  this.alert.success("Successfully Purchased Package! Enjoy your Vacation");
+}
 
 }

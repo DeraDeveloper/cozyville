@@ -23,41 +23,45 @@
     <div class="text-center">
         <div class="row my-5">
             <div class="col-md-6">
-                <div id="summer" (click)="onPackageSelected($event)" class="card bg-package-1 box-shadow ml-auto" style="width: 20rem;">
+                <div id="summer" (click)="onPackageSelected($event)" class="card bg-package-1 box-shadow ml-auto" style="width: 20rem; cursor:pointer">
                     <!-- <img src="assets/img/summer.png" alt="" style="max-height: 260px"> -->
                     <h3 class="text-white">Sunny Summer</h3>
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div id="winter" (click)="onPackageSelected($event)" class="card bg-package-2 box-shadow mr-auto" style="width: 20rem;">
+                <div id="winter" (click)="onPackageSelected($event)" class="card bg-package-2 box-shadow mr-auto" style="width: 20rem; cursor:pointer">
                     <!-- <img src="assets/img/other.png" alt="" style="max-height: 260px"> -->
                     <h3 class="text-white">Cozy Winter</h3>
-                </div>
-            </div>
-
-            <div class="col-md-12 my-5">
-                <div class="card box-shadow mx-auto" style="max-width: 42rem">
-                    <!-- carousel -->
-                    <carousel>
-                        <slide>
-                            <img class="carousel-img" src="assets/img/summer.png" alt="first slide" style="display: block; width: 100%;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </slide>
-                        <slide>
-                            <img class="carousel-img" src="assets/img/other.png" alt="second slide" style="display: block; width: 100%;">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </slide>
-                    </carousel>
                 </div>
             </div>
         </div>
         <hr>
     </div>
+</div>
+
+<div id="slide" style="display: none">
+        <h2 class="text-center font-weight-bold pt-5">{{selectedPackage}}</h2>
+
+        <div class="col-md-12 my-5">
+                <div class="card box-shadow mx-auto" style="max-width: 42rem">
+                    <!-- carousel -->
+                    <carousel>
+                        <slide *ngFor="let result of results; let index=index">
+                            <img class="carousel-img" [src]="result.urls['raw']" alt="result.description" style="display: block; width: 100%;">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3>{{result.description}}</h3>
+                                <p>Photography by: {{result.user['name']}}</p>
+                                <button class="btn btn-primary" (click)="purchasePackage()">Buy Package</button>
+                            </div>
+                        </slide>
+                    </carousel>
+                </div>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary" (click)="backToPackages()">
+                Back to Packages
+            </button>
+        </div>
 </div>
