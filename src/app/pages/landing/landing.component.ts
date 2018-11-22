@@ -1,3 +1,4 @@
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared-service/shared.service';
 import { PictureRequest } from './models/picture-request';
@@ -20,7 +21,6 @@ export class LandingComponent implements OnInit {
   }
 
   getPictures() {
-    debugger;
     this.service.getPictures(this.pictureRequest).subscribe(
       response => {
         console.log(response);
@@ -50,7 +50,6 @@ export class LandingComponent implements OnInit {
 
   // Handle package selection, set search parameter based on current selection
   onPackageSelected(e) {
-    debugger;
     let id = e.currentTarget.id;
     if(id == "summer"){
       this.pictureRequest.searchParam = Constants.SUMMER_IMAGES;
