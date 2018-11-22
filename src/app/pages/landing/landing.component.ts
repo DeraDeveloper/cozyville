@@ -59,7 +59,7 @@ export class LandingComponent implements OnInit {
       this.pictureRequest.searchParam = Constants.SUMMER_IMAGES;
     }else{
       this.selectedPackage = "Cozy Winter";
-      this.pictureRequest.searchParam = Constants.SUMMER_IMAGES;
+      this.pictureRequest.searchParam = Constants.WINTER_IMAGES;
     }
     this.toggleSlide('package', 'slide');
     this.getPictures();
