@@ -9,6 +9,7 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { SharedService } from './shared-service/shared.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AlertModule } from 'ngx-alerts';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CarouselModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
   ],
   providers: [

@@ -1,3 +1,4 @@
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared-service/shared.service';
 import { PictureRequest } from './models/picture-request';
