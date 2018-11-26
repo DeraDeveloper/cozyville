@@ -10,6 +10,7 @@ import { SharedService } from './shared-service/shared.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertModule } from 'ngx-alerts';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     HttpClientModule,
     BrowserAnimationsModule,
     CarouselModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
+    AngularFontAwesomeModule
   ],
   providers: [
     SharedService

@@ -43,7 +43,12 @@
 <div id="slide" style="display: none">
         <h2 class="text-center font-weight-bold pt-5">{{selectedPackage}}</h2>
 
-        <div class="col-md-12 my-5">
+        <div *ngIf ="loading" class="text-center">
+                <fa name="cog" animation="spin" size="4x"></fa>
+                <p>loading...</p>
+        </div>
+
+        <div *ngIf ="!loading" class="col-md-12 my-5">
                 <div class="card box-shadow mx-auto" style="max-width: 42rem">
                     <!-- carousel -->
                     <carousel>
@@ -59,8 +64,8 @@
                 </div>
         </div>
 
-        <div class="text-center">
-            <button type="button" class="btn btn-primary" (click)="backToPackages()">
+        <div class="text-center mb-5">
+            <button type="button" class="btn btn-primary mb-3" (click)="backToPackages()">
                 Back to Packages
             </button>
         </div>

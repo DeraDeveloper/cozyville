@@ -4,6 +4,7 @@
     height: 60vh;
 }
 
+
 .bg-color {
     background-image: url(/assets/img/bg-img.jpg) !important;
     background-position: center;
@@ -30,7 +31,7 @@
 .bg-package-1>h3 {
     position: absolute;
     top: 45%;
-    left: 28%;
+    left: 21%;
 }
 
 .bg-package-2>h3 {

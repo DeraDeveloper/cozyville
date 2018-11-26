@@ -18,16 +18,20 @@ export class LandingComponent implements OnInit {
   pictureRequest: PictureRequest = new PictureRequest(Constants.SUMMER_IMAGES, Constants.DEFAULT_PAGE);
   results: any[] = [];
   selectedPackage: string = "";
+  loading: boolean = false;
 
   ngOnInit() {
   }
 
   getPictures() {
+    this.loading = true;
     this.service.getPictures(this.pictureRequest).subscribe(
       response => {
+        this.loading = false;
         console.log(response);
         if( isNullOrUndefined(response) ||  isNullOrUndefined(response.body)){
           this.alert.danger("Sorry, no response was received.");
+          this.toggleSlide('slide', 'package');
           return;
         }
         if(response.status != Constants.RESPONSE_STATUS_200){
@@ -37,15 +41,20 @@ export class LandingComponent implements OnInit {
             err.forEach(element => {
               msg = element + "\n";
             });
-            this.alert.danger(msg)
+            this.alert.danger(msg);
+            this.toggleSlide('slide', 'package');
           }else {
+            this.toggleSlide('slide', 'package');
             this.alert.danger("An error occurred in the service. Please contact admin.");
           }
           return;
         }
         this.results = response.body.results;
       }, error => {
-        console.log(error)
+        this.loading = false;
+        this.alert.danger("An error occurred while retrieving images, please retry");
+        this.toggleSlide('slide', 'package');
+        console.log(error);
       }
     );
   }
@@ -63,11 +72,6 @@ export class LandingComponent implements OnInit {
     }
     this.toggleSlide('package', 'slide');
     this.getPictures();
-  }
-
-  // Handle page change event on slide show to retrieve the next or previous page fromt he server
-  onPageChange() {
-
   }
 
   toggleSlide(first, second) {
